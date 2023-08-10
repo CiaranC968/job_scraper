@@ -23,7 +23,7 @@ def switch(lang):
         return ""
 
 if __name__ == "__main__":
-    sector = input("Enter the sector (e.g., IT): ")
+    sector = input("Enter from the following sectors (It, Retail): ")
     name = switch(sector)
     
     if name:
