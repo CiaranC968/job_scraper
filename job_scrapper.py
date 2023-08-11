@@ -50,7 +50,7 @@ if __name__ == "__main__":
                 containers = get_requests(url, params)
                 
                 if not containers:
-                    print("No job titles found on the current page. Stopping.")
+                    print("Finished Saving File")
                     break
                 
                 for container in containers:
