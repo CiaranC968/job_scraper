@@ -3,6 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 import time
 from datetime import datetime
+import json
+
 
 base_url = 'https://www.jobapplyni.com/'
 
@@ -35,6 +37,11 @@ if __name__ == "__main__":
         # Define the file path using an f-string
         desktop_path = os.path.expanduser("~/Desktop/job_listings")
         file_path = os.path.join(desktop_path, f"{name}_job_listings_{today_date}.txt")
+
+        if not os.path.exists(desktop_path):
+            os.makedirs(desktop_path)
+            print("Folder does not exist. Creating folder...")
+        
         
         with open(file_path, "w") as file:
             while True:
