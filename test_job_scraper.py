@@ -4,7 +4,7 @@ import string
 
 
 def test_prevent_overwrite():
-    from job_scrapper import prevent_overwrite
+    from job_scraper import prevent_overwrite
     filename = ''.join(random.choices(string.ascii_lowercase, k=20))
     file_path = os.path.join(os.getcwd(), f"{filename}.txt")
     with open(file_path, 'w') as f_obj:
