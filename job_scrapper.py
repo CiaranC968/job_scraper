@@ -24,6 +24,21 @@ def switch(lang):
     else:
         return ""
 
+
+def prevent_overwrite(file_path: os.path) -> os.path:
+    folder_path, filename = os.path.split(file_path)
+    while os.path.exists(file_path):
+        filename = filename.rstrip('.txt')
+        if '(' in filename[-5:]:
+            file_version = int(filename[filename.rfind('(') + 1:filename.rfind(')')])
+            filename = filename.rstrip(f'_({file_version})')
+            file_version += 1
+        else:
+            file_version = 1
+        file_path = os.path.join(folder_path, f'{filename}_({file_version}).txt')
+    return file_path
+
+
 if __name__ == "__main__":
     sector = input("Enter from the following sectors (It, Retail): ")
     name = switch(sector)
@@ -37,6 +52,7 @@ if __name__ == "__main__":
         # Define the file path using an f-string
         desktop_path = os.path.expanduser("~/Desktop/job_listings")
         file_path = os.path.join(desktop_path, f"{name}_job_listings_{today_date}.txt")
+        file_path = prevent_overwrite(file_path)
 
         if not os.path.exists(desktop_path):
             os.makedirs(desktop_path)
